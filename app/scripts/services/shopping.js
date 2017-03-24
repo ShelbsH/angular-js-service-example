@@ -9,7 +9,6 @@
  */
 shop.service('ProductService', function () {
   let products = [];
-  let id = 1;
 
   this.generate = (name, price) => {
     products.push({name: name, price: price});
