@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="shoppingExampleApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Angular Shopping Example</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui/build/angular-ui.js"></script>
+  <script src="app/scripts/app.js"></script>
+</head>
+
+<body>
+  <div class="container" ng-controller="shopController">
+
+    <div calss="row">
+      <div class="col-md-6">
+        <h1>Shopping Exercise App</h1>
+        <form>
+          <div class="form-group">
+            <label for="product">Enter Product</label>
+            <input type="text" ng-model="name" class="form-control" id="product" placeholder="Enter Product">
+          </div>
+          <div class="form-group">
+            <label for="priceVal">Enter Price</label>
+            <input type="text" ng-model="price" class="form-control" id="priceVal" placeholder="Enter Price">
+          </div>
+          <button class="btn btn-primary" ng-click="createList()">Enter</button>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h1>Your Wallet: $1000</h1>
+        <h2>Remaining: {{1000 - total | currency}}</h2>
+      </div>
+    </div>
+
+    <div clas="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <th>Add</th>
+            <th>Product Name</th>
+            <th>Price</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="product in productList">
+              <td><input type="checkbox" ng-model="product.isChecked" ng-click="getPrice(product.price, $event.target.checked)"></td>
+              <td>{{product.name}}</td>
+              <td>{{product.price | currency}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total: {{total | currency}}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app/scripts/services/shopping.js"></script>
+  <script src="app/scripts/controller/shoppingCtrl.js"></script>
+</body>
+
+</html>
